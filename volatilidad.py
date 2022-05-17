@@ -1,12 +1,11 @@
 import numpy as np
 import pandas as pd
 
-saldos_cuentas_depositos_original_df = pd.read_excel("volatilidad.xls", usecols="B:F")
-scdc1_df = saldos_cuentas_depositos_original_df.iloc[0:60].reset_index(drop=True)
-scdc2_df = saldos_cuentas_depositos_original_df.iloc[30:90].reset_index(drop=True)
+saldos_depositos_df = pd.read_excel("volatilidad.xls", usecols = "B:F")
 
-scdr_df = np.log(scdc2_df.divide(scdc1_df)).fillna(0).std(axis=0)
+saldos_depositos_1 = saldos_depositos_df.iloc[0:60].reset_index(drop=True)
+saldos_depositos_2 = saldos_depositos_df.iloc[30:90].reset_index(drop=True)
 
+var_s = np.log(saldos_depositos_2.divide(saldos_depositos_1)).fillna(0).std(axis=0)
 
-
-print(scdr_df)
+print(var_s)
