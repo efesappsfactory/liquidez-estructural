@@ -14,4 +14,8 @@ corr_matrix = saldos_normalizados.corr().fillna(0)
 
 var_total = np.sqrt(var_s.dot(var_s.transpose().dot(corr_matrix)))
 
+total_depositos_last_day = saldos_depositos_df.iloc[89].agg('sum')
 
+volatilidad_general = var_total/total_depositos_last_day
+
+print(volatilidad_general)
